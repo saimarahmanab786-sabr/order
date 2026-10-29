@@ -1,13 +1,5 @@
-
-pipeline {
-    agent any
-
-    stages {
-        stage('Check Tools') {
-            steps {
-                bat 'java -version'
-                bat 'mvn -version'
-            }
-        }
-    }
-}
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
